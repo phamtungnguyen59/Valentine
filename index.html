@@ -16,6 +16,55 @@
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
     crossorigin="anonymous"
   />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  
+  <style>
+    #toggleButton {
+      background-color: transparent;
+      border: none;
+      font-size: 32px;
+      cursor: pointer;
+      color: #555;
+      transition: color 0.3s ease, transform 0.2s ease;
+    }
+
+    #toggleButton:hover {
+      color: #ff0040;
+      transform: scale(1.1);
+    }
+
+    #toggleButton .fas {
+      transition: color 0.3s ease;
+    }
+
+    #toggleButton.playing .fas {
+      color: #00FF00;
+    }
+
+    .content {
+      text-align: center;
+      margin-top: 50px;
+    }
+
+    .wrapper {
+      position: relative;
+      padding: 20px;
+    }
+
+    #bg {
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      opacity: .8;
+      background-image: url(https://i.pinimg.com/originals/b1/12/e9/b112e9dba65871d467ca28e31447060a.gif);
+      background-size: cover;
+      background-position: 50%;
+      -webkit-filter: blur(4px);
+      z-index: -1;
+    }
+  </style>
 </head>
 <body>
   <div class="wrapper">
@@ -33,28 +82,25 @@
     <div id="bg"></div>
     <div class="content">
       <!-- Header Content -->
-    <center>
       <header>
-        <h2 id="text3">Cậu yêu tớ có phải không nào ._.</h2>
-        <h4 id="text4">
-          Nếu cậu ko trả lời mà thoát ra tức là muốn làm vợ tớ rùi đó nha :v
-        </h4>
+        <h2 id="text3">HELLO em,em có yêu anh không ._.</h2>
+        <h4 id="text4">Nếu cậu ko trả lời mà thoát ra tức là muốn làm vợ tớ rùi đó nha :v</h4>
       </header>
-    </center>
+      
       <!-- Buttons -->
-      <button id="yes" type="button" class="btn btn-danger btn-lg">
-        Yêu ơi là yêuuuuuu ♥️
-      </button>
-    <Center>
-      <button id="no" type="button" class="btn btn-info btn-lg">
-        Không :3333
-    </Center>
-      </button>
+      <button id="yes" type="button" class="btn btn-danger btn-lg">Yêu ơi là yêuuuuuu ♥️</button>
+      <button id="no" type="button" class="btn btn-info btn-lg">Không :3333</button>
     </div>
   </div>
 
   <!-- Background Music -->
-  <audio src="./sound/" autoplay muted></audio>
+  <audio id="backgroundAudio" loop>
+    <source src="./sound/sound.mp3" type="audio/mpeg">
+  </audio>
+  
+  <button id="toggleButton">
+    <i id="icon" class="fas fa-volume-mute"></i>
+  </button>
 
   <!-- JavaScript -->
   <script
@@ -74,5 +120,25 @@
   ></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
   <script src="js/myJs.js"></script>
+  
+  <script>
+      var audio = document.getElementById("backgroundAudio");
+      var button = document.getElementById("toggleButton");
+      var icon = document.getElementById("icon");
+
+      button.addEventListener("click", function () {
+        if (audio.paused) {
+          audio.play();
+          icon.classList.remove("fa-volume-mute");
+          icon.classList.add("fa-volume-up");
+          button.classList.add("playing");  // Add visual feedback when playing
+        } else {
+          audio.pause();
+          icon.classList.remove("fa-volume-up");
+          icon.classList.add("fa-volume-mute");
+          button.classList.remove("playing");  // Remove visual feedback when paused
+        }
+      });
+  </script>
 </body>
 </html>
