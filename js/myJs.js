@@ -1,13 +1,13 @@
 const textConfig = {
-  text1: "He luu cậu!",
-  text2: "Tớ có điều này muốn hỏi cậu nhớ phải trả lời thật lòng nhaaa.",
-  text3: "Cậu yêu tớ có phải không nào ._.",
-  text4: "Nếu cậu ko trả lời mà thoát ra tức là muốn làm vợ tớ rùi đó nha :v",
+  text1: "He luu em!",
+  text2: "Anh có điều này muốn hỏi cậu nhớ phải trả lời thật lòng nhaaa.",
+  text3: "Hello em,em có yêu anh không ._.",
+  text4: "Nếu em ko trả lời mà thoát ra tức là muốn làm vợ tớ rùi đó nha :v",
   text5: "Ko :33333",
   text6: "Yêu ơi là yêu <3",
-  text7: "lí do cậu thích tớ đi :vvvv",
-  text8: "Gửi cho tớ <3",
-  text9: "Vì đơn giản tớ thích cậu XD",
+  text7: "lí do em thích anh đi :vvvv",
+  text8: "Gửi cho anh <3",
+  text9: "Vì đơn giản anh đẹp trai 😛",
   text10: "Tớ biết mà ^^ Yêu cậu 300.000",
   text11:
     "Tối nay tớ qua đón cậu đi chơi nhaa ",
@@ -35,7 +35,7 @@ $(document).ready(function () {
     Swal.fire({
       title: textConfig.text1,
       text: textConfig.text2,
-      imageUrl: "https://i.pinimg.com/736x/25/1b/53/251b53d811a48a7d7f2940892ab1b307.jpg",
+      imageUrl: "https://i.pinimg.com/736x/52/6f/83/526f8308558c671e1355576541abf826.jpg",
       imageWidth: 300,
       imageHeight: 300,
       background: '#fff url("img/iput-bg.jpg")',
@@ -87,23 +87,17 @@ $(document).ready(function () {
 
   // generate text in input
   function textGenerate() {
-    var n = "";
-    var text = " " + textConfig.text9;
-    var a = Array.from(text);
-    var textVal = $("#txtReason").val() ? $("#txtReason").val() : "";
-    var count = textVal.length;
-    if (count > 0) {
-      for (let i = 1; i <= count; i++) {
-        n = n + a[i];
-        if (i == text.length + 1) {
-          $("#txtReason").val("");
-          n = "";
-          break;
-        }
-      }
+    var text = textConfig.text9; // Lấy nội dung cần điền
+    var textVal = $("#txtReason").val(); // Giá trị hiện tại trong ô input
+    var count = textVal.length; // Số ký tự đã nhập
+  
+    if (count < text.length) {
+      $("#txtReason").val(text.substring(0, count + 1)); // Thêm ký tự tiếp theo
+    } else {
+      clearInterval(handleWriteText); // Dừng khi hoàn thành
     }
-    $("#txtReason").val(n);
   }
+  
 
   // show popup
   $("#yes").click(function () {
@@ -138,7 +132,7 @@ $(document).ready(function () {
           text: textConfig.text11,
           confirmButtonColor: "#83d0c9",
           onClose: () => {
-            window.location = "https://www.facebook.com/djbodev";
+            window.location = "https://discord.com/users/996946182456750201";
           },
         });
       }
@@ -154,3 +148,4 @@ $(document).ready(function () {
     });
   });
 });
+
